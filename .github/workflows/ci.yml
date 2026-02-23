@@ -3,10 +3,20 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - main    # Run after merging into the "main" target
+    paths:      # Run only if files relevant to CI have changed (i.e. not install.sh, scripts or .github/worfklows)
+      - 'llmfit-*/**'
+      - 'Cargo.*o*'
   pull_request:
     branches:
-      - main
+      - main    # Run in PRs targeting the "main" branch
+    paths:
+      - 'llmfit-*/**'
+      - 'Cargo.*o*'
+    types:      # Avoid low-impact events like "edited" or "labeled"
+      - opened
+      - synchronize
+      - reopened
 
 env:
   CARGO_TERM_COLOR: always
@@ -20,7 +30,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         rust: [stable]
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -60,7 +70,7 @@ jobs:
   fmt:
     name: Rustfmt
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -76,7 +86,7 @@ jobs:
   clippy:
     name: Clippy
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -116,7 +126,7 @@ jobs:
   check:
     name: Cargo Check
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
