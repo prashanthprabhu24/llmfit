@@ -133,13 +133,16 @@ pub struct ThemeColors {
 }
 
 fn default_colors() -> ThemeColors {
+    // Default theme uses Color::Reset for fg so it inherits the terminal's
+    // foreground color, making it work on both light and dark terminals.
+    // Inspired by AndiDog's light-theme-support approach.
     ThemeColors {
         bg: Color::Reset,
-        fg: Color::White,
+        fg: Color::Reset,
         muted: Color::DarkGray,
         border: Color::DarkGray,
         title: Color::Green,
-        highlight_bg: Color::Rgb(40, 40, 70),
+        highlight_bg: Color::LightBlue,
 
         accent: Color::Cyan,
         accent_secondary: Color::Yellow,
