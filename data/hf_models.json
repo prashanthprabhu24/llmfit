@@ -1,5 +1,23 @@
 [
   {
+    "name": "testmodel",
+    "provider": "prashanth",
+    "parameter_count": "100B",
+    "parameters_raw": 80074,
+    "min_ram_gb": 1.0,
+    "recommended_ram_gb": 2.0,
+    "min_vram_gb": 0.5,
+    "quantization": "Q4_K_M",
+    "context_length": 512,
+    "use_case": "Lightweight, edge deployment",
+    "pipeline_tag": "text-generation",
+    "architecture": "phi",
+    "hf_downloads": 23246,
+    "hf_likes": 0,
+    "release_date": "2024-03-29",
+    "_discovered": true
+  },
+  {
     "name": "echarlaix/tiny-random-PhiForCausalLM",
     "provider": "echarlaix",
     "parameter_count": "80K",
